@@ -1,6 +1,11 @@
 # Use the httpd-parent image as base
 FROM quay.io/redhattraining/httpd-parent
 
+LABEL io.k8s.description='blabla' \
+      io.k8s.display-name='Apache HTTPD' \
+      io.openshift.expose-services='8080:http' \
+      io.openshift.tags='apache, httpd'
+
 RUN /usr/bin/sed -i 's/Listen 80/Listen 8080/' /etc/httpd/conf/httpd.conf && \
     chgrp -R 0 /etc/httpd && \
     chmod -R g=u /etc/httpd
